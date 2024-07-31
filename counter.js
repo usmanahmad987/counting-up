@@ -1,12 +1,14 @@
 const readline = require('readline');
 const minimist = require('minimist');
 
+// Parse command-line arguments
 const args = minimist(process.argv.slice(2));
-const targetNumber = parseInt(args._[0], 10);
 
-if (isNaN(targetNumber)) {
-    console.log('Please provide a valid number as an argument.');
-    process.exit(1);
+const targetNumber = parseInt(args.target, 10);
+if (isNaN(targetNumber) || targetNumber <= 0) {
+  console.error("Usage: node counter.js --target=<target_number>");
+  console.error("Please provide a valid positive integer as the target number.");
+  process.exit(1);
 }
 
 console.log(`Counting up to ${targetNumber}:`);
